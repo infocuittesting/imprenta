@@ -6,6 +6,10 @@ from chalice import Chalice
 from datetime import datetime
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
+from flask import Flask,request
+
+app = Flask(__name__)
+@app.route("/pdf_s3",methods=['POST'])
 
 BASE_DIR = os.path.dirname(os.path.realpath(__file__))
 here = lambda *x: os.path.abspath(os.path.join(BASE_DIR, *x))
@@ -87,3 +91,5 @@ def index():
         return {
             'error': str(e),
         }
+if __name__ == "__main__":
+  app.run(debug=True)
